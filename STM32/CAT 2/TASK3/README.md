@@ -1,4 +1,4 @@
-# EXP: STM32 CAT2 – Task 3
+# EXP: STM32 CAT 9 – Task 3
 
 ## DATE
 28/09/2026

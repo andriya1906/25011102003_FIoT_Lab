@@ -1,4 +1,4 @@
-# EXP: STM32 CAT2 – Task 2
+# EXP: STM32 CAT 9 – Task 2
 
 ## DATE
 28/09/2026
@@ -22,9 +22,7 @@ STM32 UART Command Controlled LED
 - **PC Terminal:** Arduino IDE Serial Monitor
 
 ## TASK NO
-**Task 9A – Basic UART Communication**
-
-**Subtask 2: Receive and Echo**
+**Task 2 – Receive and Echo**
 
 Modify the UART program to receive a character from the PC terminal and transmit the received character back to the terminal.
 
