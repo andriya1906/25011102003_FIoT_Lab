@@ -7,14 +7,14 @@
 **HARDWARE SETUP / PLATFORM:**
 - STM32 Blue Pill Development Board (STM32F103C8T6)
 - Wemos D1 Mini (ESP8266 Wi-Fi Module)
-- PC with PuTTY/Tera Term
+- Arduino IDE Serial Monitor
 - USB-to-TTL converter for PC communication
 
 **TASK NO:** Task1 – Establish STM32–Wemos UART Communication
 
 ## Circuit Diagram
 
-![Circuit Diagram](circuit.png)
+![Circuit Diagram](circuit.jpeg)
 
 ## Core Logic / Pseudocode / Code Base
 
