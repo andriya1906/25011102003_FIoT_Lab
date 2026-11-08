@@ -68,57 +68,6 @@ START
 END
 ```
 
-### Program – TASK2.C
-
-```c
-#include <reg51.h>
-
-void uart_init() {
-    PCON = 0x00;
-    SCON = 0x50;
-    TMOD = 0x20;
-
-    TH1 = 0xFD;
-    TL1 = 0xFD;
-
-    TR1 = 1;
-
-    TI = 0;
-    RI = 0;
-}
-
-void uart_transmit(char ch) {
-    SBUF = ch;
-
-    while (TI == 0);
-
-    TI = 0;
-}
-
-char uart_receive() {
-    char ch;
-
-    while (RI == 0);
-
-    ch = SBUF;
-
-    RI = 0;
-
-    return ch;
-}
-
-void main() {
-    char received;
-
-    uart_init();
-
-    while (1) {
-        received = uart_receive();
-        uart_transmit(received);
-    }
-}
-```
-
 ### Expected Output
 
 When the user types the following characters in PuTTY:
