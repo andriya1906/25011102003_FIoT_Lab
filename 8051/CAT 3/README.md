@@ -49,31 +49,102 @@ Timer-Based LED Pattern Generator and Button Interrupt Controller
 
 ## Core Logic / Pseudocode / Code Base
 
-The program uses direct port-pin access through the `reg51.h` header file to control four LEDs connected to Port 3 and detect a push-button input through Port 2.
+The program implements a keypad-controlled human-machine interface using the AT89S52 microcontroller. The matrix keypad is used as the input device, the seven-segment display provides visual feedback, and four LEDs indicate the selected operating function.
 
-A global variable `count` stores the current operating mode. It ranges from 0 to 3, corresponding to the four LED modes.
+### Pseudocode
 
-**Working principle:**
+```text
+START
 
-1. Initialize P2.7 as the button/keypad driving line and P2.3 as the button input.
-2. Continuously check the value of `count` using a `switch` statement.
-3. Execute the corresponding LED mode.
-4. During the software delay, check whether the button is pressed.
-5. When an active-LOW button press is detected, increment `count` and use modulo 4 to cycle through the four modes.
-6. Wait for the button to be released before continuing.
+INITIALIZE:
+    Set all four LEDs to OFF
+    Clear the seven-segment display
+    Set key = 10 (no key pressed)
 
-**Four operating modes:**
+REPEAT FOREVER:
 
-- **Mode 1 – Running LED Pattern:** LEDs turn ON sequentially from LED1 to LED4.
-- **Mode 2 – Binary Counter:** The four LEDs display binary values from `0000` to `1111`.
-- **Mode 3 – Alternating Pattern:** LED2 and LED4 turn ON together, followed by LED1 and LED3.
-- **Mode 4 – All LED Flash:** All four LEDs turn ON together and then turn OFF together.
+    SCAN KEYPAD:
+        Activate keypad rows one at a time
+        Check the column inputs
+        Identify the pressed key
+        Store the key value
 
-**Code Base:**
+    DISPLAY:
+        Convert the pressed key into its
+        corresponding seven-segment pattern
+        Display the digit
 
-The implementation is written in Embedded C using the 8051 register definition header file `reg51.h`. Separate functions are used for the software delay and each of the four LED operating modes.
+    SELECT OPERATION USING KEY:
 
-The button is checked through polling inside the delay function. The current implementation uses nested software loops for timing.
+        IF key is 1:
+            Turn ON LED1
+            Turn OFF other LEDs
+
+        ELSE IF key is 2:
+            Turn ON LED2
+            Turn OFF other LEDs
+
+        ELSE IF key is 3:
+            Turn ON LED3
+            Turn OFF other LEDs
+
+        ELSE IF key is 4:
+            Turn ON LED4
+            Turn OFF other LEDs
+
+        ELSE IF key is 5:
+            Perform running LED pattern
+            Scan keypad during delays
+
+        ELSE IF key is 6:
+            Perform alternating LED pattern
+            Scan keypad during delays
+
+        ELSE IF key is 7:
+            Display binary count from 0 to 15
+            using the four LEDs
+            Scan keypad during delays
+
+        ELSE IF key is 8:
+            Blink all four LEDs
+            Scan keypad during delays
+
+        ELSE IF key is 9:
+            Turn OFF all four LEDs
+
+        ELSE IF key is 0:
+            Reset key state
+            Turn OFF all four LEDs
+            Display zero
+
+END REPEAT
+```
+
+### Working Principle
+
+1. Initialize the four LEDs and seven-segment display.
+2. Continuously scan the matrix keypad by activating its rows one at a time and checking the column inputs.
+3. Identify the pressed key and store its value in the global variable `key`.
+4. Display the corresponding digit on the seven-segment display using predefined hexadecimal patterns.
+5. Use a `switch` statement to select the LED operation associated with the pressed key.
+6. Execute the selected LED function.
+7. Continue scanning the keypad during software delays to detect changes in the selected key.
+
+### Key Operations
+
+- **Keys 1–4 – Individual LED Control:** Turn ON the corresponding LED while turning OFF the remaining LEDs.
+- **Key 5 – Running LED Pattern:** Turn ON LEDs sequentially from LED1 to LED4.
+- **Key 6 – Alternating LED Pattern:** Alternate between LED2 and LED4 being ON together and LED1 and LED3 being ON together.
+- **Key 7 – Binary Counter:** Display binary values from `0000` to `1111` using the four LEDs.
+- **Key 8 – All LED Blink:** Turn all four LEDs ON and OFF repeatedly.
+- **Key 9 – LED OFF:** Turn OFF all four LEDs.
+- **Key 0 – Reset System:** Reset the key state, turn OFF all LEDs and display zero on the seven-segment display.
+
+### Code Base
+
+The implementation uses the `reg51.h` header file for direct access to the 8051 port pins. Separate functions are used for keypad scanning, seven-segment digit display, individual LED control, running LED pattern, alternating LED pattern, binary counting and blinking all LEDs.
+
+A software delay function is used to control the timing of LED patterns while periodically scanning the keypad for changes in the selected key.
 
 ## INFERENCE
 
