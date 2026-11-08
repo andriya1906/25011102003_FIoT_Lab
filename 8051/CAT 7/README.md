@@ -31,33 +31,33 @@ This experiment consists of three tasks:
 
 Develop a 4-bit GPIO-based LCD driver and configure the 16×2 LCD for 4-bit, 2-line operation. Display character and string data.
 
-[View Task 1 README](Task1/README.md)
+[View Task 1 README](TASK1/README.md)
 
 ### Task 2 – Task 7B: Cursor Positioning and Dynamic Value Update
 
 Develop cursor-positioning and data-update functions, including `lcd_goto()`, `lcd_puts()` and `lcd_print_number()`.
 
-[View Task 2 README](Task2/README.md)
+[View Task 2 README](TASK2/README.md)
 
 ### Task 3 – Task 7C: 4×4 Keypad-Based Character Movement
 
 Develop an interactive application in which a character is moved across the 16×2 LCD using keypad directional inputs.
 
-[View Task 3 README](Task3/README.md)
+[View Task 3 README](TASK3/README.md)
 
 ## 6. CIRCUIT DIAGRAM
 
 ### Task 1 – LCD Initialization and Character/String Display
 
-![Task 1 Circuit Diagram](Task1/circuit.jpeg)
+![Task 1 Circuit Diagram](TASK1/circuit.jpeg)
 
 ### Task 2 – Cursor Positioning and Dynamic Value Update
 
-![Task 2 Circuit Diagram](Task2/circuit.jpeg)
+![Task 2 Circuit Diagram](TASK2/circuit.jpeg)
 
 ### Task 3 – 4×4 Keypad-Based Character Movement
 
-![Task 3 Circuit Diagram](Task3/circuit.jpeg)
+![Task 3 Circuit Diagram](TASK3/circuit.jpeg)
 
 **Common LCD Connections:**
 
