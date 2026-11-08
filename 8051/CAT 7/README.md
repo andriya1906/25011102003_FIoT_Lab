@@ -49,15 +49,15 @@ Develop an interactive application in which a character is moved across the 16×
 
 ### Task 1 – LCD Initialization and Character/String Display
 
-![Task 1 Circuit Diagram](Task1/circuit.png)
+![Task 1 Circuit Diagram](Task1/circuit.jpeg)
 
 ### Task 2 – Cursor Positioning and Dynamic Value Update
 
-![Task 2 Circuit Diagram](Task2/circuit.png)
+![Task 2 Circuit Diagram](Task2/circuit.jpeg)
 
 ### Task 3 – 4×4 Keypad-Based Character Movement
 
-![Task 3 Circuit Diagram](Task3/circuit.png)
+![Task 3 Circuit Diagram](Task3/circuit.jpeg)
 
 **Common LCD Connections:**
 
