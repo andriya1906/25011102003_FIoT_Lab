@@ -58,6 +58,16 @@ Human-Machine Interface using Matrix Keypad, LEDs, and Seven-Segment Display
 
 The program implements a keypad-controlled human-machine interface using the AT89S52 microcontroller. The matrix keypad is used as the input device, the seven-segment display provides visual feedback, and four LEDs indicate the selected operating function.
 
+**Working Principle:**
+
+1. Initialize the four LEDs and seven-segment display.
+2. Continuously scan the matrix keypad by activating its rows one at a time and checking the column inputs.
+3. Identify the pressed key and store its value in the global variable `key`.
+4. Display the corresponding digit on the seven-segment display using predefined hexadecimal patterns.
+5. Use a `switch` statement to select the LED operation associated with the pressed key.
+6. Execute the selected LED function.
+7. Continue scanning the keypad during software delays to detect changes in the selected key.
+
 ### Pseudocode
 
 ```text
