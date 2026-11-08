@@ -44,7 +44,7 @@ This experiment consists of three tasks from Continuous Lab Evaluation-8:
 
 The same basic hardware circuit is used for all three tasks.
 
-![Circuit Diagram](TASK1/circuit.png)
+![Circuit Diagram](TASK1/circuit.jpeg)
 
 The push-button is connected to PB12, configured with an internal pull-up resistor. The LED is controlled through PB10. The additional behaviour in Tasks 2 and 3 is implemented through firmware, so no additional hardware connections are required.
 
