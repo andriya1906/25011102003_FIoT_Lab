@@ -44,7 +44,7 @@ The experiments use the on-board peripherals of the NUCLEO-F401RE development bo
 - LD2 (on-board LED) is connected to PA5.
 - B1 (on-board user push button) is connected to PC13.
 
-![Circuit Diagram](circuit.png)
+![Circuit Diagram](circuit.jpeg)
 
 Separate circuit diagrams are maintained in the respective task folders where applicable. No external LED or push button is required for these tasks.
 
