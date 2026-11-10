@@ -28,14 +28,20 @@ Each experiment has its own documentation, including its objective, hardware set
 │   ├── CAT1/
 │   ├── CAT2/
 │   ├── CAT3/
-│   ├── ...
+│   ├── CAT4/
+│   ├── CAT5/
+│   ├── CAT6/
+│   ├── CAT7/
 │   └── README.md
 │
 ├── STM32/
-│   ├── CAT1/
-│   ├── CAT2/
-│   ├── CAT3/
-│   ├── ...
+│   ├── CAT8/
+│   ├── CAT9/
+│   ├── CAT10/
+│   ├── CAT11/
+│   ├── CAT12/
+│   ├── CAT13/
+│   ├── CAT14/
 │   └── README.md
 │
 ├── .gitignore
@@ -68,7 +74,8 @@ The STM32 section explores embedded programming using STM32 development boards a
 The experiments use different STM32 platforms depending on the task, including:
 
 - **STM32F103C8T6 – Blue Pill**
-- **STM32F410RBT6 – NUCLEO-F410RB / NUCLEO-F401RE platform work as applicable**
+- **STM32F410RBT6 – NUCLEO-F410RB**
+- **STM32F410RET6 - NUCLEO-F401RE**
 
 Topics covered include:
 

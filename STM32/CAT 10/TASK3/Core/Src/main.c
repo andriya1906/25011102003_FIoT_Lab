@@ -72,7 +72,7 @@ int main(void)
     char mode[] = "AT+CWMODE=1\r\n";
     char dhcp[] = "AT+CWDHCP=1,1\r\n";
     char authenticate[] =
-        "AT+CWJAP=\"SNUC\",\"YOUR_WIFI_PASSWORD\"\r\n";
+        "AT+CWJAP=\"YOUR_WIFI_SSID\",\"YOUR_WIFI_PASSWORD\"\r\n";
     char details[] = "AT+CIFSR\r\n";
     char mux[] = "AT+CIPMUX=1\r\n";
     char httpserver[] = "AT+CIPSERVER=1,80\r\n";

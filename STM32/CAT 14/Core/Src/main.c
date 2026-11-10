@@ -193,7 +193,7 @@ int main(void)
 	}
 
 	debug_print("Connecting WiFi...\r\n");
-	ESP8266_wifiConnect("SNUC", "snu12345");
+	ESP8266_wifiConnect("YOUR_WIFI_SSID", "YOUR_WIFI_PASSWORD");
 	debug_print("WiFi connection function completed\r\n");
 
 	debug_print("Setting single connection mode...\r\n");
