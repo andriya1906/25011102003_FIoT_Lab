@@ -1,121 +1,200 @@
-# CAT12 – BME280 Sensor Interfacing Using I²C and Bosch Sensor API
-
-## EXP
+# EXP
 CAT12
 
-## DATE
-23/10/2026
+# DATE
+14/10/2026
 
-## NAME OF EXP
-BME280 Sensor Interfacing Using I²C and Bosch Sensor API
+# NAME OF EXP
+STM32F401RE Cortex-M4: GPIO and User Input Programming
 
-## HARDWARE SETUP / PLATFORM
-
-- **Development Board:** NUCLEO-F410RB
-- **Microcontroller:** STM32F410RBT6
+# HARDWARE SETUP / PLATFORM
+- **Development Board:** NUCLEO-F401RE
+- **Microcontroller:** STM32F401RET6
 - **Processor Core:** ARM Cortex-M4
-- **Sensor:** Bosch BME280 Environmental Sensor
-- **Communication Protocol:** I²C (I²C1)
-- **Serial Communication:** USART2
-- **Debugging / Serial Interface:** ST-Link Virtual COM Port
-- **Software Tools:** STM32CubeMX, Keil MDK, Arduino IDE Serial Monitor
-- **Libraries:** STM32 HAL Library and Bosch Sensortec BME280 Sensor API
+- **On-board LED:** LD2 connected to GPIO PA5
+- **On-board User Push Button:** B1 connected to GPIO PC13
+- **Development Tools:** STM32CubeMX and Keil MDK
+- **Software Library:** STM32 HAL
 
-## TASK NO
-Task 1 – BME280 Sensor Interfacing Using I²C and Bosch Sensor API
+### Clock Configuration
+The system clock is configured using the external high-speed clock (HSE) in bypass mode and the PLL.
 
-## CIRCUIT DIAGRAM
+The supplied configuration uses:
+- HSE mode: Bypass
+- PLL source: HSE
+- PLLM: 25
+- PLLN: 168
+- PLLP: 2
+- PLLQ: 4
+- AHB prescaler: 1
+- APB1 prescaler: 2
+- APB2 prescaler: 1
+
+The actual system clock frequency depends on the external clock frequency supplied to the HSE input.
+
+# TASK NO
+- **Task 1:** On-board LED Bring-Up
+- **Task 2:** On-board Switch Control with State Remembrance
+- **Task 3:** Short-Press and Long-Press Detection
+
+# Circuit Diagram
+
+The experiments use the on-board peripherals of the NUCLEO-F401RE development board.
+
+- LD2 (on-board LED) is connected to PA5.
+- B1 (on-board user push button) is connected to PC13.
 
 ![Circuit Diagram](circuit.jpeg)
 
-The BME280 sensor is interfaced with the STM32F410RBT6 using the I²C1 peripheral.
+Separate circuit diagrams are maintained in the respective task folders where applicable. No external LED or push button is required for these tasks.
 
-The connections include:
+# CORE LOGIC / PSEUDOCODE / CODE BASE
 
-- BME280 VCC → 3.3V supply
-- BME280 GND → GND
-- BME280 SDA → STM32 I²C1 SDA pin
-- BME280 SCL → STM32 I²C1 SCL pin
-
-The sensor's I²C address is configured as `0x76` using `BME280_I2C_ADDR_PRIM`.
-
-USART2 is used to transmit the measured sensor values to the PC through the board's ST-Link Virtual COM Port.
-
-**Note:** The exact STM32 I²C1 pin numbers should match the CubeMX configuration used in the project.
-
-## CORE LOGIC / PSEUDOCODE / CODE BASE
+## Task 1 – On-board LED Bring-Up
 
 ### Core Logic
-
-The application interfaces the BME280 environmental sensor with the STM32 microcontroller using the I²C communication protocol. The Bosch Sensortec BME280 Sensor API is used to initialise the sensor, configure its measurement settings, read sensor data, and apply the built-in compensation algorithms.
-
-Custom I²C read and write functions are implemented using STM32 HAL APIs to connect the Bosch driver with the STM32 I²C peripheral.
-
-The compensated temperature, pressure, and humidity values are periodically transmitted to the PC through USART2 and displayed using the Arduino IDE Serial Monitor.
+GPIO pin PA5 is configured as a push-pull output. The program continuously toggles the output state with a 100 ms delay between consecutive toggles.
 
 ### Pseudocode
 
-**1. Initialisation**
+```text
+START
 
-1. Initialise the STM32 HAL library.
-2. Configure the system clock.
-3. Initialise GPIO, I²C1, and USART2 peripherals.
-4. Set the BME280 I²C address to `0x76`.
-5. Configure the Bosch API interface structure:
-   - Assign the I²C interface pointer.
-   - Assign the custom I²C read function.
-   - Assign the custom I²C write function.
-   - Assign the delay function.
-6. Initialise the BME280 sensor using `bme280_init()`.
+Initialize HAL
+Configure system clock
+Initialize GPIO
 
-**2. Sensor Configuration**
+WHILE TRUE
+    Toggle LED on PA5
+    Wait for 100 milliseconds
+END WHILE
 
-1. Configure temperature oversampling to 1×.
-2. Configure pressure oversampling to 1×.
-3. Configure humidity oversampling to 1×.
-4. Disable the internal filter.
-5. Apply the configuration using `bme280_set_sensor_settings()`.
-6. Set the sensor to normal operating mode using `bme280_set_sensor_mode()`.
+END
+```
 
-**3. Measurement and Data Transmission**
+## Task 2 – On-board Switch Control with State Remembrance
 
-1. Read temperature, pressure, and humidity using `bme280_get_sensor_data()`.
-2. Allow the Bosch API to apply the compensation algorithms.
-3. Extract the compensated measurements:
-   - Temperature in °C.
-   - Pressure in hPa (converted from Pa by dividing by 100).
-   - Relative humidity in %RH.
-4. Format the measurements into a character buffer using `sprintf()`.
-5. Transmit the formatted output through USART2 using `HAL_UART_Transmit()`.
-6. Wait for one second.
-7. Repeat the measurement and transmission process continuously.
+### Core Logic
+GPIO pin PC13 is configured as an input with an internal pull-up, while PA5 is configured as an output. The program continuously reads the button state and controls the LED based on the input level.
 
-### Important Functions Used
+### Pseudocode
 
-| Function | Purpose |
-|---|---|
-| `bme280_init()` | Initialises the BME280 sensor and reads its calibration data. |
-| `bme280_set_sensor_settings()` | Configures oversampling and filter settings. |
-| `bme280_set_sensor_mode()` | Sets the sensor operating mode. |
-| `bme280_get_sensor_data()` | Reads compensated temperature, pressure, and humidity. |
-| `user_i2c_read()` | Reads BME280 registers using STM32 HAL I²C. |
-| `user_i2c_write()` | Writes to BME280 registers using STM32 HAL I²C. |
-| `user_delay_us()` | Provides the delay function required by the Bosch API. |
-| `HAL_UART_Transmit()` | Transmits the formatted sensor measurements to the PC. |
+```text
+START
 
-### Code Base
+Initialize HAL
+Configure system clock
+Initialize GPIO
 
-- `main.c` – Contains peripheral initialisation, Bosch API configuration, sensor measurement logic, and UART data transmission.
-- `bme280.c` – Bosch BME280 Sensor API implementation.
-- `bme280.h` – Bosch BME280 API function declarations and structures.
-- `bme280_defs.h` – BME280 register definitions, constants, and configuration macros.
+Configure PC13 as input with pull-up
+Configure PA5 as output
 
-## INFERENCE
+WHILE TRUE
 
-The BME280 environmental sensor was interfaced with the STM32F410RBT6 microcontroller using the I²C1 communication protocol and the Bosch Sensortec BME280 Sensor API.
+    Read button state from PC13
 
-The sensor was initialised and configured with 1× oversampling for temperature, pressure, and humidity measurements, with the internal filter disabled. The Bosch API performed the compensation calculations using the sensor's calibration data to obtain temperature, pressure, and relative humidity values.
+    IF button is pressed THEN
+        Turn ON LED
+    ELSE
+        Turn OFF LED
+    END IF
 
-The measured values were periodically transmitted through USART2 using the ST-Link Virtual COM Port and displayed on the Arduino IDE Serial Monitor.
+END WHILE
 
-This experiment demonstrated sensor interfacing using I²C, integration of an external sensor driver with STM32 HAL, compensated environmental data acquisition, and UART-based serial monitoring.
+END
+```
+
+**Implementation note:** The supplied code performs level-based LED control. The LED remains ON while the button is pressed and turns OFF when released. It does not implement the press-event toggle and state remembrance described in the task requirement.
+
+## Task 3 – Short-Press and Long-Press Detection
+
+### Core Logic
+The program measures button press duration using `HAL_GetTick()`.
+
+- A press duration below 250 ms is treated as a short press.
+- A press duration of 250 ms or more is treated as a long press.
+- A short press toggles the LED when blinking is inactive.
+- A short press during blinking stops blinking and turns the LED OFF.
+- A long press starts continuous blinking if blinking is inactive.
+- The LED toggles every 100 ms while blinking is active.
+
+### Pseudocode
+
+```text
+START
+
+Initialize HAL
+Configure system clock
+Initialize GPIO
+
+pressed = 0
+isBlinking = 0
+
+WHILE TRUE
+
+    Read button state from PC13
+
+    IF button is pressed THEN
+
+        IF pressed == 0 THEN
+            pressed = 1
+            Store current tick as press_start
+        END IF
+
+    ELSE
+
+        IF pressed == 1 THEN
+
+            pressed = 0
+            duration = current tick - press_start
+
+            IF duration < 250 milliseconds THEN
+
+                IF isBlinking == 0 THEN
+                    Toggle LED
+                ELSE
+                    Turn OFF LED
+                    Stop blinking
+                END IF
+
+            ELSE
+
+                IF isBlinking == 0 THEN
+                    Turn ON LED
+                    Start blinking
+                    Store current tick as blink_start
+                END IF
+
+            END IF
+
+        END IF
+
+    END IF
+
+    IF isBlinking == 1 THEN
+
+        IF current tick - blink_start >= 100 milliseconds THEN
+            Toggle LED
+            Update blink_start
+        END IF
+
+    END IF
+
+END WHILE
+
+END
+```
+
+## Code Base
+Each task folder contains its respective `main.c`, `main.h` and STM32CubeMX-generated project files.
+
+- **Task1:** GPIO output configuration and periodic LED blinking.
+- **Task2:** GPIO input reading and button-controlled LED operation.
+- **Task3:** Short-press and long-press detection using the HAL tick counter and timed LED blinking.
+
+# INFERENCE
+The experiments demonstrated GPIO output control, digital input reading and time-based user input detection using the NUCLEO-F401RE development board.
+
+Task 1 verified the on-board LED operation through GPIO output toggling. Task 2 demonstrated button-based LED control using GPIO input polling. Task 3 extended the application by measuring button press duration using the HAL tick counter and performing different LED operations based on short and long presses.
+
+These experiments provided practical understanding of GPIO configuration, on-board peripheral interfacing, polling-based input detection and non-blocking time measurement using STM32 HAL.
