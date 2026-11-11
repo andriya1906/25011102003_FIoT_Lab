@@ -35,7 +35,7 @@ This experiment consists of three tasks involving hardware timer configuration, 
 
 **Timing mechanism:** Timer 0 overflow flag polling.
 
-[View Task 1 README](Task1/README.md)
+[View Task 1 README](TASK1/README.md)
 
 ### Task 2 – LED Fading Using Software PWM
 
@@ -47,7 +47,7 @@ This experiment consists of three tasks involving hardware timer configuration, 
 
 **Timing mechanism:** Timer 0 overflow flag polling.
 
-[View Task 2 README](Task2/README.md)
+[View Task 2 README](TASK2/README.md)
 
 ### Task 3 – Stepper Motor Speed and Direction Control (Optional)
 
@@ -66,7 +66,7 @@ This experiment consists of three tasks involving hardware timer configuration, 
 
 The implemented sequence provides forward stepping. Reverse-direction control is not included.
 
-[View Task 3 README](Task3/README.md)
+[View Task 3 README](TASK3/README.md)
 
 ## KEY CONCEPTS DEMONSTRATED
 
