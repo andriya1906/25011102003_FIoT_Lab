@@ -1,4 +1,3 @@
-
 #include <reg51.h>
 
 void uart_init() {
@@ -45,3 +44,4 @@ void main() {
         uart_transmit(received);    // Send the same character back
     }
 }
+
