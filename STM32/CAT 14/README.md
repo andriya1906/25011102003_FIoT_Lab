@@ -24,13 +24,13 @@ BME280 Sensor Interfacing Using I²C and (MQTT) using Custom Built ESP8266 API
 - **MQTT Port:** 1883
 - **MQTT Topic:** `iot/bme`
 - **MQTT QoS:** 0
-- **Software and Libraries:** STM32CubeMX, Keil MDK, STM32 HAL Library, Bosch BME280 Sensor API, Custom ESP8266 MQTT Library (ESPLib)
+- **Software and Libraries:** STM32CubeMX, Keil MDK, STM32 HAL Library, Bosch BME280 Sensor API, Custom ESP8266 MQTT Library (ESPLib), Node-RED, MQTTX
 
 ## TASK NO
 
 CAT14 – BME280 Sensor Interfacing Using I²C and MQTT with a Custom-Built ESP8266 API.
 
-## CIRCUIT DIAGRAM
+## Circuit Diagram
 
 ![Circuit Diagram](circuit.jpeg)
 
@@ -48,7 +48,7 @@ The hardware setup consists of the STM32 NUCLEO-F410RB board, BME280 sensor modu
 - ESP8266 VCC → Appropriate 3.3V supply
 - STM32 USART2 → ST-Link Virtual COM Port → PC
 
-## CORE LOGIC / PSEUDOCODE / CODE BASE
+## Core Logic / Pseudocode / Code Base
 
 ### Core Logic
 
@@ -57,6 +57,8 @@ The application collects environmental measurements from the BME280 sensor using
 The STM32 then constructs a JSON payload containing the sensor readings and publishes it to an MQTT broker through the ESP8266 Wi-Fi module using the custom ESP8266 MQTT library.
 
 The same readings are also transmitted through USART2 for serial monitoring and debugging.
+
+Node-RED receives the published JSON messages through an MQTT In node and processes the sensor values for visualization. MQTTX is used as an MQTT client to monitor and verify the published messages.
 
 ### Pseudocode
 
@@ -226,4 +228,4 @@ The STM32 acquired compensated temperature, pressure, and humidity measurements,
 
 Using the custom ESP8266 MQTT library, the STM32 connected to a Wi-Fi network and an MQTT broker. The JSON-formatted sensor readings were published periodically to the MQTT topic `iot/bme` using QoS 0.
 
-The published environmental data was received in Node-RED for monitoring and visualization, demonstrating an IoT-based environmental sensing and MQTT communication system.
+The published environmental data was received in Node-RED for monitoring and visualization. MQTTX was also used to monitor the MQTT messages, demonstrating an IoT-based environmental sensing and MQTT communication system.
