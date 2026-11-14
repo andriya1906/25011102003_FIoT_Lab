@@ -45,11 +45,11 @@ For example, when the user types `ABC123` in PuTTY, the 8051 receives the charac
 
 ### Task 1 – UART Transmission
 
-![Task 1 Circuit Diagram](Task1/circuit.png)
+![Task 1 Circuit Diagram](Task1/circuit.jpeg)
 
 ### Task 2 – UART Echo
 
-![Task 2 Circuit Diagram](Task2/circuit.png)
+![Task 2 Circuit Diagram](Task2/circuit.jpeg)
 
 **Hardware Connections:**
 
@@ -101,7 +101,7 @@ START
 END
 ```
 
-**Code Base:** `Task1/TASK1.C`
+**Code Base:** `Task1/TASK1.c`
 
 ### Task 2 – UART Echo
 
@@ -139,7 +139,7 @@ START
 END
 ```
 
-**Code Base:** `Task2/TASK2.C`
+**Code Base:** `Task2/TASK2.c`
 
 ### Communication Verification
 

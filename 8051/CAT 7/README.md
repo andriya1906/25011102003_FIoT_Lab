@@ -92,7 +92,7 @@ Task 3 additionally uses the keypad connections specified in its individual task
 - 4-bit communication.
 - Software timing delays.
 
-**Code Base:** `Task1/TASK1.C`
+**Code Base:** `Task1/TASK1.c`
 
 ### Task 2 – Cursor Positioning and Dynamic Value Update
 
@@ -112,7 +112,7 @@ Task 3 additionally uses the keypad connections specified in its individual task
 - Integer-to-character conversion.
 - Dynamic LCD updates.
 
-**Code Base:** `Task2/TASK2.C`
+**Code Base:** `Task2/TASK2.c`
 
 ### Task 3 – 4×4 Keypad-Based Character Movement
 
@@ -134,7 +134,7 @@ Task 3 additionally uses the keypad connections specified in its individual task
 - LCD cursor positioning.
 - Interactive display control.
 
-**Code Base:** `Task3/TASK3.C`
+**Code Base:** `Task3/TASK3.c`
 
 ### Overall Pseudocode
 

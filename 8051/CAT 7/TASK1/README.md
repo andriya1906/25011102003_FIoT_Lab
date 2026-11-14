@@ -81,7 +81,7 @@ END
 ```
 
 ### Code Base
-`TASK1.C`
+`TASK1.c`
 
 The program uses:
 - `delay()` – Generates software delays and disables the LCD Enable signal.

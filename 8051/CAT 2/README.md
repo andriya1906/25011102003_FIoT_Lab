@@ -65,7 +65,7 @@ WHILE (1)
 END WHILE
 ```
 
-**Source Code:** `main.c`
+**Source Code:** `EX 02.c`
 
 The complete implementation is available in the source file included in this folder.
 

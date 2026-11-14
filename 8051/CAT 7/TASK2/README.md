@@ -132,7 +132,7 @@ END
 ```
 
 ### Code Base
-`TASK2.C`
+`TASK2.c`
 
 The main program displays two strings alternately:
 - `LCD testing...`

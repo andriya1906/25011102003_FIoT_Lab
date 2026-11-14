@@ -138,7 +138,7 @@ END
 ```
 
 ### Code Base
-`TASK3.C`
+`TASK3.c`
 
 The program contains the following functions:
 

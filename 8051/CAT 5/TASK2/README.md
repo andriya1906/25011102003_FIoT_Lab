@@ -26,7 +26,7 @@ The objective is to generate a software PWM signal using Timer 0 and gradually v
 
 ## Circuit Diagram
 
-![Circuit Diagram](circuit.png)
+![Circuit Diagram](circuit.jpeg)
 
 **Pin connection:** P2.0 is used as the LED control output. The LED connection and polarity should match the actual development board or external circuit used during the experiment.
 
